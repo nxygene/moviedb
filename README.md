@@ -4,6 +4,7 @@
   movieDB is an application built for Android TV. The application demonstrates modern Android development with Hilt, Coroutines, Flow, Jetpack and Material Design based on MVVM architecture.
 </p>
 </br>
+<img src="https://user-images.githubusercontent.com/42215231/154843378-6bf75242-1379-4ed9-b07c-3898a2911227.gif" width="600" height="366" />
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 26
