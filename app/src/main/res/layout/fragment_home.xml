@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.sberkozd.moviedb.data.models.SortOptions" />
+
+        <variable
+            name="viewModel"
+            type="com.sberkozd.moviedb.ui.home.HomeViewModel" />
+
+        <variable
+            name="afterTextChanged"
+            type="androidx.databinding.adapters.TextViewBindingAdapter.AfterTextChanged" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragmentHome_clRoot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/fragmentHome_tvPopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_margin="15dp"
+                    android:text="@string/title_popular"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.sberkozd.moviedb.util.HorizontalCarouselRecyclerView
+                    android:id="@+id/fragmentHome_rvPopular"
+                    adapterMovieList="@{viewModel.listLiveData}"
+                    paginator="@{viewModel}"
+                    sortParameter="@{viewModel.sortOption}"
+                    toast="@{viewModel.toast}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingLeft="@dimen/textSmallPadding"
+                    android:scrollbarSize="2dp"
+                    android:translationX="-150dp"
+                    android:paddingRight="@dimen/textSmallPadding"
+                    android:paddingBottom="@dimen/textSmallPadding"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:scrollbarThumbHorizontal="@drawable/scrollbar"
+                    android:scrollbars="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/fragmentHome_tvPopular"
+                    app:spanCount="2"
+                    tools:listitem="@layout/movie_list" />
+
+
+                <TextView
+                    android:id="@+id/fragmentHome_tvMovieName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_margin="15dp"
+                    style="@style/TextAppearance.Leanback.Title"
+                    android:translationX="-150dp"
+                    android:gravity="center"
+                    android:text="@{viewModel.currentMovie}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/fragmentHome_pbLoading"
+            gone="@{!viewModel.loading}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:indicatorColor="@color/colorAccent" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

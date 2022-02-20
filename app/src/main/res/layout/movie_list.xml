@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="R"
+            type="com.sberkozd.moviedb.R" />
+
+        <variable
+            name="movie"
+            type="com.sberkozd.moviedb.data.models.Movie" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemMovie_cvRoot"
+        android:layout_width="150dp"
+        android:layout_height="222dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="100dp"
+        android:background="@color/darkGray"
+        android:minWidth="104dp"
+        android:minHeight="154dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="@dimen/cardDefaultRadius"
+        app:cardElevation="@dimen/cardDefaultElevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/itemMovie_ivPoster"
+                imageUrl="@{movie.poster_path}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradiant"
+                android:gravity="right"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/itemMovie_ivStar"
+                    android:layout_width="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:src="@drawable/ic_star" />
+
+                <TextView
+                    android:id="@+id/itemMovie_tvStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="8dp"
+                    android:text="@{String.valueOf(movie.vote_average)}"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    tools:text="7.5" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">moviedb</string>
+    <string name="movie_title">The Lord of the Rings</string>
+    <string name="movie_average_point">7.8</string>
+    <string name="movie_overview">Aragorn is revealed as the heir to the ancient kings as he,
+        Gandalf and the other members of the broken fellowship struggle to save Gondor from Sauron\'s forces.
+        Meanwhile, Frodo and Sam take the ring closer to the heart of Mordor, the dark lord\'s realm.</string>
+    <string name="error_no_more_data_found">No More Data Available</string>
+    <string name="title_popular">Popular</string>
+</resources>

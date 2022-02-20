@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import
+            alias="R"
+            type="com.sberkozd.moviedb.R" />
+
+        <variable
+            name="viewModel"
+            type="com.sberkozd.moviedb.ui.detail.DetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black">
+
+            <ImageView
+                android:id="@+id/fragmentDetail_ivPoster"
+                imageUrl="@{viewModel.movieModel.backdrop_path}"
+                placeHolderDrawable="@{R.drawable.movie_placeholder}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/detail_poster_height"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/movie_placeholder" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentDetail_tvMovieName"
+                style="@style/DetailTextStyle"
+                android:text="@{viewModel.movieModel.title}"
+                app:layout_constraintBottom_toTopOf="@id/fragmentDetail_tvAveragePoint"
+                app:layout_constraintLeft_toLeftOf="@id/fragmentDetail_ivPoster"
+                tools:text="@string/movie_title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentDetail_tvAveragePoint"
+                style="@style/DetailTextStyle"
+                android:drawableLeft="@drawable/ic_star"
+                android:text="@{String.valueOf(viewModel.movieModel.vote_average)}"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentDetail_ivPoster"
+                app:layout_constraintLeft_toLeftOf="@id/fragmentDetail_ivPoster"
+                tools:text="@string/movie_average_point" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentDetail_tvReleaseDate"
+                style="@style/DetailTextStyle"
+                android:text="@{String.valueOf(viewModel.movieModel.release_date)}"
+                app:layout_constraintBottom_toBottomOf="@id/fragmentDetail_ivPoster"
+                app:layout_constraintRight_toRightOf="@id/fragmentDetail_ivPoster"
+                tools:text="19.03.2021" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/fragmentDetail_tvOverview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/textDefaultMargin"
+                android:gravity="center"
+                android:padding="@dimen/textDefaultPadding"
+                android:text="@{viewModel.detailResponse.overview}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textDefaultSize"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragmentDetail_ivPoster"
+                tools:text="@string/movie_overview" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/fragmentDetail_pbLoading"
+                gone="@{!viewModel.loading}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:indicatorColor="@color/colorAccent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
